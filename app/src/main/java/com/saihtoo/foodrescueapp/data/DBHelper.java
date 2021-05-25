@@ -126,7 +126,23 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
     public List<FoodItem> getAllFoodByUser(int userID) {
-        List<FoodItem> foodItemList = new ArrayList<>();
+        List<FoodItem> foodItemList;
+        db = this.getReadableDatabase();
+        String selectAllByUserID = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.USER_ID + "= ?";
+        Cursor c = db.rawQuery(selectAllByUserID, new String[]{String.valueOf(userID)});
+
+        foodItemList = new ArrayList<>();
+        while (c.moveToNext()) {
+            FoodItem food = new FoodItem();
+            food.setUserID(c.getString(c.getColumnIndex(Util.USER_ID)));
+            food.setTitle(c.getString(c.getColumnIndex(Util.FOOD_TITLE)));
+            food.setDescription(c.getString(c.getColumnIndex(Util.FOOD_DESCRIPTION)));
+            byte[] Image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
+            Bitmap bitmap = BitmapFactory.decodeByteArray(Image, 0, Image.length);
+            food.setImage(bitmap);
+            foodItemList.add(food);
+        }
+        db.close();
         return foodItemList;
     }
 }
