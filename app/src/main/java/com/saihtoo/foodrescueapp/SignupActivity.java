@@ -15,7 +15,6 @@ import com.saihtoo.foodrescueapp.model.UserItem;
 public class SignupActivity extends AppCompatActivity {
     EditText fullName, email, phoneNumber, address, password, confirmPassword;
     Button signUpButton;
-
     DBHelper db;
 
     @Override
@@ -42,18 +41,14 @@ public class SignupActivity extends AppCompatActivity {
                 String pa = password.getText().toString();
                 String cp = confirmPassword.getText().toString();
 
-                if (pa.equals(cp))
-                {
-                    //Register User
-                    //Add data to the User Database
+                if (pa.equals(cp)) {
                     long result = db.insertUser(new UserItem(n, e, p, a, pa));
                     if (result > 0)
                         Toast.makeText(SignupActivity.this, "You have been registered!",
                                 Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(SignupActivity.this, MainActivity.class);
                     startActivity(intent);
-                }
-                else
+                } else
                     Toast.makeText(SignupActivity.this, "ERROR: Passwords do not match!",
                             Toast.LENGTH_SHORT).show();
             }

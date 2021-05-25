@@ -5,9 +5,8 @@ import android.graphics.Bitmap;
 import java.io.ByteArrayOutputStream;
 
 public class FoodItem {
-    private String foodID, userID;
     private Bitmap image;
-    private String title, description, date, time, quantity, location;
+    private String foodID, userID, title, description, date, time, quantity, location;
 
     public FoodItem() { }
 

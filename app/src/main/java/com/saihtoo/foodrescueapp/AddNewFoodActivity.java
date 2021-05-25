@@ -15,32 +15,25 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Switch;
 
 import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.FoodItem;
-import com.saihtoo.foodrescueapp.model.UserItem;
-import com.saihtoo.foodrescueapp.util.Util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.Date;
 
-public class AddNewFoodActivity extends AppCompatActivity implements View.OnClickListener
-{
+public class AddNewFoodActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton addImageButton;
     Button saveFood;
     EditText foodTitle, foodDescription, foodTime, foodQuantity, foodLocation;
     CalendarView foodCalendar;
 
+    int userID;
     DBHelper db;
-
     //toStoreImageFile
     Bitmap uploadImage;
-
     public static final int IMAGE_UPLOAD_CODE = 1001;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +78,7 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
                 imageIntent.setDataAndType(Uri.parse(file.getPath()), "image/*");
                 startActivityForResult(imageIntent, IMAGE_UPLOAD_CODE);
                 break;
+
             case R.id.newFoodSaveButton:
                 String title = foodTitle.getText().toString();
                 String description = foodDescription.getText().toString();
@@ -94,9 +88,8 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
                 String quantity = foodQuantity.getText().toString();
                 String location = foodLocation.getText().toString();
 
-
                 FoodItem food = new FoodItem();
-                int userID = getIntent().getIntExtra(MainActivity.CURRENT_USER, 0);
+                userID = getIntent().getIntExtra(MainActivity.CURRENT_USER, 0);
                 food.setUserID(String.valueOf(userID));
                 System.out.println(userID + "****************");
                 food.setTitle(title);
@@ -107,8 +100,10 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
                 food.setLocation(location);
                 food.setImage(uploadImage);
 
-                long result = db.insertFood(food);
-                finish();
+                db.insertFood(food);
+                Intent intent = new Intent(AddNewFoodActivity.this, HomeActivity.class);
+                intent.putExtra(MainActivity.CURRENT_USER, userID);
+                startActivity(intent);
                 break;
         }
     }

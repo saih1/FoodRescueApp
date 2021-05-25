@@ -21,7 +21,6 @@ import java.util.List;
 
 public class MyListActivity extends AppCompatActivity
 {
-
     FloatingActionButton addButton;
     RecyclerViewAdapter adapter;
     List<FoodItem> foodItemList;
@@ -69,6 +68,7 @@ public class MyListActivity extends AppCompatActivity
             case R.id.homeMenu:
                 Intent homeIntent = new Intent(MyListActivity.this, HomeActivity.class);
                 homeIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(homeIntent);
                 finish();
                 break;
 
@@ -78,6 +78,7 @@ public class MyListActivity extends AppCompatActivity
             case R.id.myListMenu:
                 Intent mylistIntent = new Intent(MyListActivity.this, MyListActivity.class);
                 mylistIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(mylistIntent);
                 finish();
                 break;
         }

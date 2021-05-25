@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +12,6 @@ import android.widget.Toast;
 
 import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.UserItem;
-import com.saihtoo.foodrescueapp.util.Util;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String CURRENT_USER = "current_user";

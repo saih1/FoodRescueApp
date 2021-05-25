@@ -67,18 +67,20 @@ public class HomeActivity extends AppCompatActivity {
             case R.id.homeMenu:
                 Intent homeIntent = new Intent(HomeActivity.this, HomeActivity.class);
                 homeIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(homeIntent);
                 finish();
                 break;
 
             case R.id.accountMenu:
-
+                //CODE HERE
                 break;
+
             case R.id.myListMenu:
                 Intent mylistIntent = new Intent(HomeActivity.this, MyListActivity.class);
                 mylistIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(mylistIntent);
                 finish();
                 break;
-        }
-        return true;
+        } return true;
     }
 }

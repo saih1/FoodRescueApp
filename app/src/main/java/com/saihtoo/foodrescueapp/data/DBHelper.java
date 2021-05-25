@@ -87,8 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    public int getUserID(String username, String password)
-    {
+    public int getUserID(String username, String password) {
         db = this.getReadableDatabase();
         @SuppressLint("Recycle")
         Cursor c = db.query(Util.USER_TABLE_NAME,
@@ -108,6 +107,7 @@ public class DBHelper extends SQLiteOpenHelper {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
         String selectAll = "SELECT * FROM " + Util.FOOD_TABLE_NAME;
+        @SuppressLint("Recycle")
         Cursor c = db.rawQuery(selectAll, null);
 
         foodItemList = new ArrayList<>();
@@ -129,6 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
         String selectAllByUserID = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.USER_ID + "= ?";
+        @SuppressLint("Recycle")
         Cursor c = db.rawQuery(selectAllByUserID, new String[]{String.valueOf(userID)});
 
         foodItemList = new ArrayList<>();
