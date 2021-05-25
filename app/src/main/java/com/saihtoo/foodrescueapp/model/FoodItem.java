@@ -5,58 +5,41 @@ import android.graphics.Bitmap;
 import java.io.ByteArrayOutputStream;
 
 public class FoodItem {
-    private int foodID, userID;
+    private String foodID, userID;
     private Bitmap image;
     private String title, description, date, time, quantity, location;
 
-    public FoodItem(int foodID, int userID, Bitmap image, String title, String description, String date, String time, String quantity, String location) {
-        this.foodID = foodID;
-        this.userID = userID;
-        this.image = image;
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.time = time;
-        this.quantity = quantity;
-        this.location = location;
-    }
-
-    public FoodItem(Bitmap image, String title, String description, String date, String time, String quantity, String location) {
-        this.image = image;
-        this.title = title;
-        this.description = description;
-        this.date = date;
-        this.time = time;
-        this.quantity = quantity;
-        this.location = location;
-    }
-
     public FoodItem() { }
 
-    public int getFoodID()
+    public String getFoodID()
     {
         return foodID;
     }
 
-    public void setFoodID(int foodID)
+    public void setFoodID(String foodID)
     {
         this.foodID = foodID;
     }
 
-    public int getUserID()
+    public String getUserID()
     {
         return userID;
     }
 
-    public void setUserID(int userID)
+    public void setUserID(String userID)
     {
         this.userID = userID;
     }
 
-    public byte[] getImage() {
+    public byte[] getImageBitmap() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         this.image.compress(Bitmap.CompressFormat.JPEG, 0, stream);
         return stream.toByteArray();
+    }
+
+    public Bitmap getImage()
+    {
+        return image;
     }
 
     public void setImage(Bitmap image)

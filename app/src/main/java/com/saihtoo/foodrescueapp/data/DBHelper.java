@@ -48,7 +48,7 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(Util.USER_PHONE, user.getPhone());
         cv.put(Util.USER_ADDRESS, user.getAddress());
         cv.put(Util.USER_PASSWORD, user.getPassword());
-        long newRowID = db.insert(Util.DATABASE_NAME, null, cv);
+        long newRowID = db.insert(Util.USER_TABLE_NAME, null, cv);
         db.close();
         return newRowID;
     }
@@ -64,8 +64,8 @@ public class DBHelper extends SQLiteOpenHelper {
         cv.put(Util.FOOD_TIME, food.getTime());
         cv.put(Util.FOOD_QUANTITY, food.getQuantity());
         cv.put(Util.FOOD_LOCATION, food.getLocation());
-        cv.put(Util.FOOD_IMAGE, food.getImage());
-        long newRowID = db.insert(Util.DATABASE_NAME, null, cv);
+        cv.put(Util.FOOD_IMAGE, food.getImageBitmap());
+        long newRowID = db.insert(Util.FOOD_TABLE_NAME, null, cv);
         db.close();
         return newRowID;
     }
@@ -87,6 +87,23 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    public int getUserID(String username, String password)
+    {
+        db = this.getReadableDatabase();
+        @SuppressLint("Recycle")
+        Cursor c = db.query(Util.USER_TABLE_NAME,
+                new String[]{Util.USER_ID}, Util.USER_EMAIL + "=? and " + Util.USER_PASSWORD + "=?",
+                new String[]{username, password},
+                null, null, null);
+        if (c.moveToFirst()) {
+            db.close();
+            return c.getInt(c.getColumnIndex(Util.USER_ID));
+        } else {
+            db.close();
+            return -1;
+        }
+    }
+
     public List<FoodItem> getAllFood() {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
@@ -96,7 +113,7 @@ public class DBHelper extends SQLiteOpenHelper {
         foodItemList = new ArrayList<>();
         while (c.moveToNext()) {
             FoodItem food = new FoodItem();
-            food.setUserID(c.getInt(c.getColumnIndex(Util.USER_ID)));
+            food.setUserID(c.getString(c.getColumnIndex(Util.USER_ID)));
             food.setTitle(c.getString(c.getColumnIndex(Util.FOOD_TITLE)));
             food.setDescription(c.getString(c.getColumnIndex(Util.FOOD_DESCRIPTION)));
             byte[] Image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));

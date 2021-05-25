@@ -2,15 +2,21 @@ package com.saihtoo.foodrescueapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.saihtoo.foodrescueapp.data.DBHelper;
+import com.saihtoo.foodrescueapp.model.UserItem;
+
 public class SignupActivity extends AppCompatActivity {
     EditText fullName, email, phoneNumber, address, password, confirmPassword;
     Button signUpButton;
+
+    DBHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +29,8 @@ public class SignupActivity extends AppCompatActivity {
         password = findViewById(R.id.sPassword);
         confirmPassword = findViewById(R.id.sConfirmPassword);
         signUpButton = findViewById(R.id.sSignUpButton);
+
+        db = new DBHelper(this);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +46,12 @@ public class SignupActivity extends AppCompatActivity {
                 {
                     //Register User
                     //Add data to the User Database
+                    long result = db.insertUser(new UserItem(n, e, p, a, pa));
+                    if (result > 0)
+                        Toast.makeText(SignupActivity.this, "You have been registered!",
+                                Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(SignupActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
                 else
                     Toast.makeText(SignupActivity.this, "ERROR: Passwords do not match!",

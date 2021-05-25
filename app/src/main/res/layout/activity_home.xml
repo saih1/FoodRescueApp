@@ -13,7 +13,7 @@
         android:gravity="top">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/meRecyclerView"
+            android:id="@+id/homeRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="630dp"
             android:layout_marginLeft="20dp"
