@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_gravity="top"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        app:srcCompat="@drawable/ic_launcher_background">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/itemNameText"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Item Title"
+        android:textSize="20dp"
+        tools:ignore="HardcodedText">
+    </TextView>
+
+    <ImageButton
+        android:id="@+id/itemShareButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_toEndOf="@+id/itemNameText"
+        android:src="?attr/actionModeShareDrawable">
+    </ImageButton>
+
+
+    <TextView
+        android:id="@+id/itemDescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_toEndOf="@+id/imageView"
+        android:text="Item description ........."
+        android:textSize="15dp"
+        tools:ignore="HardcodedText">
+    </TextView>
+
+</RelativeLayout>

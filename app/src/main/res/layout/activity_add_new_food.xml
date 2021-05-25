@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_gravity="center"
+    android:layout_height="match_parent"
+    tools:context=".AddNewFoodActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:layout_margin="20dp"
+        android:orientation="vertical">
+
+        <ImageButton
+            android:id="@+id/addImageButton"
+            android:layout_width="150dp"
+            android:layout_height="150dp">
+        </ImageButton>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Image">
+        </TextView>
+
+        <EditText
+            android:id="@+id/foodTitle"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="Title">
+        </EditText>
+
+        <EditText
+            android:id="@+id/foodDescription"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:inputType="textLongMessage"
+            android:hint="Description">
+        </EditText>
+
+        <CalendarView
+            android:id="@+id/calenderView"
+            android:layout_width="250dp"
+            android:layout_height="250dp">
+        </CalendarView>
+
+        <EditText
+            android:id="@+id/foodTime"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="Pick up time"
+            android:inputType="time">
+        </EditText>
+
+        <EditText
+            android:id="@+id/foodQuantity"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="Quantity"
+            android:inputType="number">
+        </EditText>
+
+        <EditText
+            android:id="@+id/foodLocation"
+            android:layout_width="250dp"
+            android:layout_height="40dp"
+            android:hint="Location"
+            android:inputType="textPersonName">
+        </EditText>
+
+        <Button
+            android:id="@+id/newFoodSaveButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save">
+        </Button>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
