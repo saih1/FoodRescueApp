@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saihtoo.foodrescueapp.adapter.RecyclerViewAdapter;
@@ -18,8 +19,9 @@ import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.FoodItem;
 
 import java.util.List;
+import java.util.Objects;
 
-public class MyListActivity extends AppCompatActivity
+public class MyListActivity extends AppCompatActivity implements RecyclerViewAdapter.onFoodItemClickListener
 {
     FloatingActionButton addButton;
     RecyclerViewAdapter adapter;
@@ -32,6 +34,7 @@ public class MyListActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_list);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("My List");
         addButton = findViewById(R.id.myListAddButton);
         myListRecyclerView = findViewById(R.id.myListRecyclerView);
         currentUserID = getIntent().getIntExtra(MainActivity.CURRENT_USER, 0);
@@ -39,7 +42,7 @@ public class MyListActivity extends AppCompatActivity
         db = new DBHelper(this);
 
         foodItemList = db.getAllFoodByUser(currentUserID);
-        adapter = new RecyclerViewAdapter(foodItemList, MyListActivity.this);
+        adapter = new RecyclerViewAdapter(foodItemList, MyListActivity.this, this);
         RecyclerView.LayoutManager manager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         myListRecyclerView.setLayoutManager(manager);
@@ -83,5 +86,24 @@ public class MyListActivity extends AppCompatActivity
                 break;
         }
         return true;
+    }
+
+    @Override
+    public void onRowClick(int position) {
+        FoodItem selection = foodItemList.get(position);
+        Toast.makeText(MyListActivity.this, selection.getTitle(), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onShareClick(int position) {
+        FoodItem selection = foodItemList.get(position);
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        String shareText =
+                "Let’s start conserving resources!!\n" +
+                        "Food : " + selection.getTitle() + "\n" +
+                        "Description : " + selection.getDescription() + "\n";
+        intent.putExtra(Intent.EXTRA_TEXT, shareText);
+        startActivity(Intent.createChooser(intent, null));
     }
 }

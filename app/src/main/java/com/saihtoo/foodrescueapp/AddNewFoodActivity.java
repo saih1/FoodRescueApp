@@ -22,6 +22,7 @@ import com.saihtoo.foodrescueapp.model.FoodItem;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class AddNewFoodActivity extends AppCompatActivity implements View.OnClickListener {
     ImageButton addImageButton;
@@ -39,6 +40,7 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_food);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("New Food");
         addImageButton = findViewById(R.id.addImageButton);
         saveFood = findViewById(R.id.newFoodSaveButton);
         foodTitle = findViewById(R.id.foodTitle);

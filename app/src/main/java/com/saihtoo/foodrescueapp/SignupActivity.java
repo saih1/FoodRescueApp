@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.UserItem;
 
+import java.util.Objects;
+
 public class SignupActivity extends AppCompatActivity {
     EditText fullName, email, phoneNumber, address, password, confirmPassword;
     Button signUpButton;
@@ -21,6 +23,7 @@ public class SignupActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Sign Up");
         fullName = findViewById(R.id.sFullName);
         email = findViewById(R.id.sEmail);
         phoneNumber = findViewById(R.id.sPhone);

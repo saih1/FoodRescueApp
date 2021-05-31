@@ -20,17 +20,19 @@ import java.util.List;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.AdapterViewHolder> {
     List<FoodItem> foodItemList;
     Context context;
+    onFoodItemClickListener onFoodItemClickListener;
 
-    public RecyclerViewAdapter(List<FoodItem> foodItemList, Context context) {
+    public RecyclerViewAdapter(List<FoodItem> foodItemList, Context context, onFoodItemClickListener listener) {
         this.foodItemList = foodItemList;
         this.context = context;
+        this.onFoodItemClickListener = listener;
     }
 
     @NonNull
     @Override
     public RecyclerViewAdapter.AdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.view_item, parent, false);
-        return new AdapterViewHolder(view);
+        return new AdapterViewHolder(view, onFoodItemClickListener);
     }
 
     @Override
@@ -45,17 +47,36 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return this.foodItemList.size();
     }
 
-    public class AdapterViewHolder extends RecyclerView.ViewHolder {
+    public class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
+    {
         public ImageView itemView;
         public TextView itemTitle, itemDescription;
         public ImageButton shareButton;
+        onFoodItemClickListener onFoodItemClickListener;
 
-        public AdapterViewHolder(@NonNull View view) {
+        public AdapterViewHolder(@NonNull View view, onFoodItemClickListener listener) {
             super(view);
             itemView = view.findViewById(R.id.imageView);
             itemTitle = view.findViewById(R.id.itemNameText);
             itemDescription = view.findViewById(R.id.itemDescriptionText);
             shareButton = view.findViewById(R.id.itemShareButton);
+            onFoodItemClickListener = listener;
+
+            view.setOnClickListener(this);
+            shareButton.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View v) {
+            if (v.getId() == R.id.itemShareButton)
+                onFoodItemClickListener.onShareClick(getAdapterPosition());
+            else
+                onFoodItemClickListener.onRowClick(getAdapterPosition());
+        }
+    }
+
+    public interface onFoodItemClickListener {
+        void onRowClick(int position);
+        void onShareClick(int position);
     }
 }
