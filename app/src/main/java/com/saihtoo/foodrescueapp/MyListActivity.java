@@ -21,8 +21,7 @@ import com.saihtoo.foodrescueapp.model.FoodItem;
 import java.util.List;
 import java.util.Objects;
 
-public class MyListActivity extends AppCompatActivity implements RecyclerViewAdapter.onFoodItemClickListener
-{
+public class MyListActivity extends AppCompatActivity implements RecyclerViewAdapter.onFoodItemClickListener {
     FloatingActionButton addButton;
     RecyclerViewAdapter adapter;
     List<FoodItem> foodItemList;
@@ -76,16 +75,19 @@ public class MyListActivity extends AppCompatActivity implements RecyclerViewAda
                 break;
 
             case R.id.accountMenu:
-
+                Intent accountIntent = new Intent(MyListActivity.this, AccountActivity.class);
+                accountIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(accountIntent);
+                finish();
                 break;
+
             case R.id.myListMenu:
                 Intent mylistIntent = new Intent(MyListActivity.this, MyListActivity.class);
                 mylistIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
                 startActivity(mylistIntent);
                 finish();
                 break;
-        }
-        return true;
+        } return true;
     }
 
     @Override
@@ -105,5 +107,12 @@ public class MyListActivity extends AppCompatActivity implements RecyclerViewAda
                         "Description : " + selection.getDescription() + "\n";
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
         startActivity(Intent.createChooser(intent, null));
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(MyListActivity.this, HomeActivity.class);
+        intent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+        startActivity(intent);
     }
 }

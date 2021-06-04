@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.saihtoo.foodrescueapp.model.FoodItem;
@@ -85,6 +86,24 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
             return -1;
         }
+    }
+
+    //Get user by using the ID and return UserItem
+    public UserItem getUserByID(int userID) {
+        db = this.getReadableDatabase();
+        String fullName = null, emailAddress = null, address = null, phoneNumber = null, password = null;
+
+        Cursor c = db.rawQuery("SELECT * FROM " + Util.USER_TABLE_NAME + " WHERE " + Util.USER_ID + "=? ",
+                new String[]{String.valueOf(userID)});
+        while (c.moveToNext()) {
+            fullName = c.getString(c.getColumnIndex(Util.USER_FULL_NAME));
+            emailAddress = c.getString(c.getColumnIndex(Util.USER_EMAIL));
+            address = c.getString(c.getColumnIndex(Util.USER_ADDRESS));
+            phoneNumber = c.getString(c.getColumnIndex(Util.USER_PHONE));
+            password = c.getString(c.getColumnIndex(Util.USER_PASSWORD));
+        }
+        db.close();
+        return new UserItem(fullName, emailAddress, phoneNumber, address, password);
     }
 
     public int getUserID(String username, String password) {

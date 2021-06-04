@@ -17,6 +17,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saihtoo.foodrescueapp.adapter.RecyclerViewAdapter;
 import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.FoodItem;
+import com.saihtoo.foodrescueapp.model.UserItem;
 
 import java.util.List;
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
     RecyclerView homeRecyclerView;
     DBHelper db;
     int currentUserID;
+    UserItem user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,13 +77,16 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                 break;
 
             case R.id.accountMenu:
-                //CODE HERE
+                Intent accountIntent = new Intent(HomeActivity.this, AccountActivity.class);
+                accountIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(accountIntent);
+                finish();
                 break;
 
             case R.id.myListMenu:
-                Intent mylistIntent = new Intent(HomeActivity.this, MyListActivity.class);
-                mylistIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
-                startActivity(mylistIntent);
+                Intent listIntent = new Intent(HomeActivity.this, MyListActivity.class);
+                listIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(listIntent);
                 finish();
                 break;
         } return true;
@@ -104,5 +109,14 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                         "Description : " + selection.getDescription() + "\n";
         intent.putExtra(Intent.EXTRA_TEXT, shareText);
         startActivity(Intent.createChooser(intent, null));
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        user = db.getUserByID(currentUserID);
+        intent.putExtra("username", user.getEmail());
+        intent.putExtra("password", user.getPassword());
+        startActivity(intent);
     }
 }

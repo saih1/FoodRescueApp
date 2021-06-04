@@ -37,6 +37,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         UserItem userItem;
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent intent = getIntent();
+        usernameText.setText(intent.getStringExtra("username"));
+        passwordText.setText(intent.getStringExtra("password"));
+    }
+
     @SuppressLint("NonConstantResourceId")
     @Override
     public void onClick(View v) {
@@ -68,5 +76,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(signupIntent);
                 break;
         }
+    }
+
+    //Quit the application on BackPress from Login Screen.
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }
