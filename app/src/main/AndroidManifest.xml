@@ -28,6 +28,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
 
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true">
+        </meta-data>
+
         <activity android:name=".FoodActivity" />
         <activity android:name=".AccountActivity" />
         <activity android:name=".MyListActivity" />

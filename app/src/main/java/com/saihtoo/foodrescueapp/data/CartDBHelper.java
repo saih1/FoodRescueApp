@@ -89,9 +89,12 @@ public class CartDBHelper extends SQLiteOpenHelper {
     public boolean dbIsEmpty() {
         db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM " + CartUtil.CART_TABLE_NAME, null);
-        if (c.moveToNext())
+        if (c.moveToNext()) {
+            db.close();
             return false;
-        else
+        } else {
+            db.close();
             return true;
+        }
     }
 }
