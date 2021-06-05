@@ -37,4 +37,8 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    //Google Places
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+    //Google Maps
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 }

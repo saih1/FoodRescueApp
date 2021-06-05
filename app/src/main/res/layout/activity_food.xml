@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FoodActivity"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/foodItemImageView"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        app:srcCompat="@mipmap/ic_launcher"
+        android:layout_margin="10dp">
+    </ImageView>
+
+    <TextView
+        android:id="@+id/foodItemDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Food item description"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodItemDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date: 00/00/0000"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodItemTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time: 00:00"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <TextView
+        android:id="@+id/foodItemQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Quantity: 0"
+        android:layout_margin="10dp">
+    </TextView>
+
+    <FrameLayout
+        android:id="@+id/mapsFrameLayout"
+        android:layout_width="300dp"
+        android:layout_height="170dp"
+        android:layout_margin="10dp">
+    </FrameLayout>
+
+    <Button
+        android:id="@+id/foodItemAddToCart"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="ADD TO CART"
+        android:layout_margin="10dp">
+    </Button>
+
+</LinearLayout>

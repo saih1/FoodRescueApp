@@ -6,16 +6,27 @@ import java.io.ByteArrayOutputStream;
 
 public class FoodItem {
     private Bitmap image;
-    private String foodID, userID, title, description, date, time, quantity, location;
+    private int foodID;
+    private String title, description, date, time, quantity, location, userID;
+
+    public FoodItem(Bitmap image, String title, String description, String date, String time, String quantity, String location) {
+        this.image = image;
+        this.title = title;
+        this.description = description;
+        this.date = date;
+        this.time = time;
+        this.quantity = quantity;
+        this.location = location;
+    }
 
     public FoodItem() { }
 
-    public String getFoodID()
+    public int getFoodID()
     {
         return foodID;
     }
 
-    public void setFoodID(String foodID)
+    public void setFoodID(int foodID)
     {
         this.foodID = foodID;
     }

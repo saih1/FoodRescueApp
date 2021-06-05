@@ -106,6 +106,31 @@ public class DBHelper extends SQLiteOpenHelper {
         return new UserItem(fullName, emailAddress, phoneNumber, address, password);
     }
 
+    //Get user by using the ID of the food and return FoodItem
+    public FoodItem getFoodByID(int foodID)
+    {
+        db = this.getReadableDatabase();
+        byte[] image = new byte[0];
+        Bitmap bitmap = null;
+        String title = null, description = null, date = null, time = null, quantity = null, location = null;
+
+        Cursor c = db.rawQuery("SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.FOOD_ID + "=? ",
+                new String[]{String.valueOf(foodID)});
+        while (c.moveToNext()) {
+            image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
+            bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
+
+            title = c.getString(c.getColumnIndex(Util.FOOD_TITLE));
+            description = c.getString(c.getColumnIndex(Util.FOOD_DESCRIPTION));
+            date = c.getString(c.getColumnIndex(Util.FOOD_DATE));
+            time = c.getString(c.getColumnIndex(Util.FOOD_TIME));
+            quantity = c.getString(c.getColumnIndex(Util.FOOD_QUANTITY));
+            location = c.getString(c.getColumnIndex(Util.FOOD_LOCATION));
+        }
+        db.close();
+        return new FoodItem(bitmap, title, description, date, time, quantity, location);
+    }
+
     public int getUserID(String username, String password) {
         db = this.getReadableDatabase();
         @SuppressLint("Recycle")
@@ -132,9 +157,14 @@ public class DBHelper extends SQLiteOpenHelper {
         foodItemList = new ArrayList<>();
         while (c.moveToNext()) {
             FoodItem food = new FoodItem();
+            food.setFoodID(c.getInt(c.getColumnIndex(Util.FOOD_ID)));
             food.setUserID(c.getString(c.getColumnIndex(Util.USER_ID)));
             food.setTitle(c.getString(c.getColumnIndex(Util.FOOD_TITLE)));
             food.setDescription(c.getString(c.getColumnIndex(Util.FOOD_DESCRIPTION)));
+            food.setLocation(c.getString(c.getColumnIndex(Util.FOOD_LOCATION)));
+            food.setTime(c.getString(c.getColumnIndex(Util.FOOD_TIME)));
+            food.setQuantity(c.getString(c.getColumnIndex(Util.FOOD_QUANTITY)));
+            //adding Image
             byte[] Image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
             Bitmap bitmap = BitmapFactory.decodeByteArray(Image, 0, Image.length);
             food.setImage(bitmap);

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Food Rescue APP</string>
+    <string name="PLACES_API_KEY">AIzaSyAsJJt4_Usu1h_BoxuXjXY3K9rA-jp3GEY</string>
 </resources>
