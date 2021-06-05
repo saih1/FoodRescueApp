@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.saihtoo.foodrescueapp.adapter.RecyclerViewAdapter;
@@ -90,17 +89,22 @@ public class HomeActivity extends AppCompatActivity implements RecyclerViewAdapt
                 startActivity(listIntent);
                 finish();
                 break;
+
+            case R.id.myCartMenu:
+                Intent cartIntent = new Intent(HomeActivity.this, CartActivity.class);
+                cartIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(cartIntent);
+                finish();
+                break;
         } return true;
     }
 
     @Override
     public void onRowClick(int position) {
         FoodItem selection = foodItemList.get(position);
-        Toast.makeText(HomeActivity.this, selection.getTitle(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HomeActivity.this, FoodActivity.class);
         intent.putExtra(MainActivity.CURRENT_USER, currentUserID);
         intent.putExtra(HomeActivity.CURRENT_FOOD_ID, selection.getFoodID());
-
         startActivity(intent);
     }
 

@@ -91,7 +91,6 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
                 // TODO: Get info about the selected place.
                 Log.i(TAG, "Place: " + place.getName() + ", " + place.getId());
                 selectedLocation = place.getLatLng().toString();
-                System.out.println(place.getLatLng().toString() + "**************");
             }
 
             @Override

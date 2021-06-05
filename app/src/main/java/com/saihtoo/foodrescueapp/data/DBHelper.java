@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.saihtoo.foodrescueapp.model.FoodItem;
@@ -88,7 +87,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Get user by using the ID and return UserItem
+    //Get userItem by using the ID and return UserItem
     public UserItem getUserByID(int userID) {
         db = this.getReadableDatabase();
         String fullName = null, emailAddress = null, address = null, phoneNumber = null, password = null;
@@ -106,18 +105,17 @@ public class DBHelper extends SQLiteOpenHelper {
         return new UserItem(fullName, emailAddress, phoneNumber, address, password);
     }
 
-    //Get user by using the ID of the food and return FoodItem
-    public FoodItem getFoodByID(int foodID)
-    {
+    //Get foodItem by using the ID of the food and return FoodItem
+    public FoodItem getFoodByID(int foodID) {
         db = this.getReadableDatabase();
-        byte[] image = new byte[0];
+//        byte[] image = new byte[0];
         Bitmap bitmap = null;
         String title = null, description = null, date = null, time = null, quantity = null, location = null;
 
         Cursor c = db.rawQuery("SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.FOOD_ID + "=? ",
                 new String[]{String.valueOf(foodID)});
         while (c.moveToNext()) {
-            image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
+            byte[] image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
             bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
 
             title = c.getString(c.getColumnIndex(Util.FOOD_TITLE));

@@ -17,4 +17,10 @@
         android:title="My List"
         app:showAsAction="collapseActionView">
     </item>
+
+    <item
+        android:id="@+id/myCartMenu"
+        android:title="Cart"
+        app:showAsAction="collapseActionView">
+    </item>
 </menu>

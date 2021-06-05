@@ -9,10 +9,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.saihtoo.foodrescueapp.data.DBHelper;
-import com.saihtoo.foodrescueapp.model.FoodItem;
 import com.saihtoo.foodrescueapp.model.UserItem;
 
 import java.util.Objects;
@@ -74,6 +72,13 @@ public class AccountActivity extends AppCompatActivity {
                 Intent listIntent = new Intent(AccountActivity.this, MyListActivity.class);
                 listIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
                 startActivity(listIntent);
+                finish();
+                break;
+
+            case R.id.myCartMenu:
+                Intent cartIntent = new Intent(AccountActivity.this, CartActivity.class);
+                cartIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(cartIntent);
                 finish();
                 break;
         } return true;

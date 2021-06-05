@@ -87,6 +87,13 @@ public class MyListActivity extends AppCompatActivity implements RecyclerViewAda
                 startActivity(mylistIntent);
                 finish();
                 break;
+
+            case R.id.myCartMenu:
+                Intent cartIntent = new Intent(MyListActivity.this, CartActivity.class);
+                cartIntent.putExtra(MainActivity.CURRENT_USER, currentUserID);
+                startActivity(cartIntent);
+                finish();
+                break;
         } return true;
     }
 
