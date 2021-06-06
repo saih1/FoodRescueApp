@@ -42,7 +42,7 @@ public class FoodItem {
 
     public byte[] getImageBitmap() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        this.image.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+        this.image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
 

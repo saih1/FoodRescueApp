@@ -13,7 +13,7 @@ public class CartItem {
 
     public byte[] getImageBitmap() {
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        this.image.compress(Bitmap.CompressFormat.JPEG, 0, stream);
+        this.image.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         return stream.toByteArray();
     }
 
@@ -37,8 +37,7 @@ public class CartItem {
         this.cartID = cartID;
     }
 
-    public int getFoodID()
-    {
+    public int getFoodID() {
         return foodID;
     }
 

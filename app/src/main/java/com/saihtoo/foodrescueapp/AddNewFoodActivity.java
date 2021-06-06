@@ -102,7 +102,10 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == IMAGE_UPLOAD_CODE) {
-            Uri image = data.getData();
+            Uri image = null;
+            if (data != null) {
+                image = data.getData();
+            }
             InputStream stream = null;
             try {
                 stream = getContentResolver().openInputStream(image);
