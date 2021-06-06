@@ -8,7 +8,8 @@
     tools:context=".FoodActivity"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@color/e">
 
     <ImageView
         android:id="@+id/foodItemImageView"
@@ -23,7 +24,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Food item description"
-        android:textSize="20sp"></TextView>
+        android:textSize="20sp"
+        android:typeface="monospace">
+    </TextView>
 
     <TextView
         android:id="@+id/foodItemDate"
@@ -31,7 +34,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Date: 00/00/0000"
-        android:textSize="20sp"></TextView>
+        android:textSize="20sp"
+        android:typeface="monospace">
+    </TextView>
 
     <TextView
         android:id="@+id/foodItemTime"
@@ -39,7 +44,9 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Time: 00:00"
-        android:textSize="20sp"></TextView>
+        android:typeface="monospace"
+        android:textSize="20sp">
+    </TextView>
 
     <TextView
         android:id="@+id/foodItemQuantity"
@@ -47,7 +54,8 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:text="Quantity: 0"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:typeface="monospace">
     </TextView>
 
     <FrameLayout
@@ -64,7 +72,8 @@
         android:layout_margin="5dp"
         android:text="Price: $ 00"
         android:textStyle="bold"
-        android:textSize="20sp">
+        android:textSize="20sp"
+        android:typeface="monospace">
     </TextView>
 
     <Button
@@ -72,7 +81,8 @@
         android:layout_width="150dp"
         android:layout_height="40dp"
         android:text="ADD TO CART"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        android:typeface="monospace">
     </Button>
 
     <RelativeLayout

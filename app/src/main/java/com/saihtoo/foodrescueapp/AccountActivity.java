@@ -19,7 +19,6 @@ public class AccountActivity extends AppCompatActivity {
     TextView fullName, emailAddress, phoneNumber, address;
     int currentUserID;
     DBHelper db;
-
     UserItem user;
 
     @Override
@@ -27,6 +26,7 @@ public class AccountActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_account);
         Objects.requireNonNull(getSupportActionBar()).setTitle("Account");
+
         fullName = findViewById(R.id.accountName);
         emailAddress = findViewById(R.id.accountEmail);
         phoneNumber = findViewById(R.id.accountPhoneNumber);

@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (username.isEmpty() || password.isEmpty()) {
                     Toast.makeText(MainActivity.this, "Please enter your username and password",
                             Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     int resultGetUser = db.getUser(username, password);
                     int userID = db.getUserID(username, password);
                     if (resultGetUser > -1) {
@@ -68,8 +67,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     } else
                         Toast.makeText(MainActivity.this, "User not found! Please Sign up.",
                                 Toast.LENGTH_SHORT).show();
-                }
-                break;
+                } break;
 
             case R.id.mainSignupBtn:
                 Intent signupIntent = new Intent(MainActivity.this, SignupActivity.class);

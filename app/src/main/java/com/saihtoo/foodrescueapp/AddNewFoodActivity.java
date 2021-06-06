@@ -19,7 +19,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.maps.model.LatLng;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
@@ -42,11 +41,10 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
     Button saveFood;
     EditText foodTitle, foodDescription, foodTime, foodQuantity;
     CalendarView foodCalendar;
+    DBHelper db;
+    Bitmap uploadImage;
 
     int userID;
-    DBHelper db;
-    //toStoreImageFile
-    Bitmap uploadImage;
     public static final int IMAGE_UPLOAD_CODE = 1001;
 
     String selectedLocation;
@@ -78,7 +76,6 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 getSupportFragmentManager().findFragmentById(R.id.autocomplete_fragment);
-
         autocompleteFragment.setHint("Address");
 
         // Specify the types of place data to return.
@@ -131,7 +128,7 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
             case R.id.newFoodSaveButton:
                 String title = foodTitle.getText().toString();
                 String description = foodDescription.getText().toString();
-
+                @SuppressLint("SimpleDateFormat")
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String date = dateFormat.format(new Date(foodCalendar.getDate()));
                 String time = foodTime.getText().toString();
@@ -148,8 +145,8 @@ public class AddNewFoodActivity extends AppCompatActivity implements View.OnClic
                 food.setQuantity(quantity);
                 food.setLocation(location);
                 food.setImage(uploadImage);
-
                 db.insertFood(food);
+
                 Intent intent = new Intent(AddNewFoodActivity.this, HomeActivity.class);
                 intent.putExtra(MainActivity.CURRENT_USER, userID);
                 startActivity(intent);

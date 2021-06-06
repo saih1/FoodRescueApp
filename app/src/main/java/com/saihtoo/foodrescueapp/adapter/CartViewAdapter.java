@@ -18,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.ViewHolder>
-{
+//RecyclerViewAdapter class for CartActivity.class
+public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.ViewHolder> {
     List<CartItem> cartItemList;
     Context context;
     final int priceOfEachItem = 3;
@@ -54,7 +54,6 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public ImageView imageView;
         public TextView titleText, descriptionText, dateText, quantityText, priceText;
-
         public ViewHolder(@NonNull View view) {
             super(view);
             imageView = view.findViewById(R.id.cartImageView);

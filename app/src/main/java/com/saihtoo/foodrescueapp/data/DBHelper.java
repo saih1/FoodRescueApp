@@ -37,7 +37,6 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //INSERT METHODS
     //add user to the table
     public long insertUser(UserItem user) {
         db = this.getWritableDatabase();
@@ -52,7 +51,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return newRowID;
     }
 
-    //add food to the table with USER_ID for retrieval purposes
+    //add food to the table with current user id
     public long insertFood(FoodItem food) {
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -69,7 +68,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return newRowID;
     }
 
-    //Get a user by user's email and password
+    //get userid by email & password
     public int getUser(String username, String password) {
         db = this.getReadableDatabase();
         @SuppressLint("Recycle")
@@ -86,7 +85,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Get userItem by using the ID and return UserItem
+    //get userItem instance by userID
     public UserItem getUserByID(int userID) {
         db = this.getReadableDatabase();
         String fullName = null, emailAddress = null, address = null, phoneNumber = null, password = null;
@@ -104,7 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return new UserItem(fullName, emailAddress, phoneNumber, address, password);
     }
 
-    //Get foodItem by using the ID of the food and return FoodItem
+    //get foodItem instance by food id
     public FoodItem getFoodByID(int foodID) {
         db = this.getReadableDatabase();
         Bitmap bitmap = null;
@@ -116,7 +115,6 @@ public class DBHelper extends SQLiteOpenHelper {
         while (c.moveToNext()) {
             byte[] image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
             bitmap = BitmapFactory.decodeByteArray(image, 0, image.length);
-
             title = c.getString(c.getColumnIndex(Util.FOOD_TITLE));
             description = c.getString(c.getColumnIndex(Util.FOOD_DESCRIPTION));
             date = c.getString(c.getColumnIndex(Util.FOOD_DATE));
@@ -128,7 +126,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return new FoodItem(bitmap, title, description, date, time, quantity, location);
     }
 
-    //get user_ID by email address and password (login details)
+    //get user id by email address and password (login details)
     public int getUserID(String username, String password) {
         db = this.getReadableDatabase();
         @SuppressLint("Recycle")
@@ -145,14 +143,13 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
-    //get all the food items available in the table
+    //get all the food items available in the food table
     public List<FoodItem> getAllFood() {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
         String selectAll = "SELECT * FROM " + Util.FOOD_TABLE_NAME;
         @SuppressLint("Recycle")
         Cursor c = db.rawQuery(selectAll, null);
-
         foodItemList = new ArrayList<>();
         while (c.moveToNext()) {
             FoodItem food = new FoodItem();
@@ -163,7 +160,6 @@ public class DBHelper extends SQLiteOpenHelper {
             food.setLocation(c.getString(c.getColumnIndex(Util.FOOD_LOCATION)));
             food.setTime(c.getString(c.getColumnIndex(Util.FOOD_TIME)));
             food.setQuantity(c.getString(c.getColumnIndex(Util.FOOD_QUANTITY)));
-            //adding Image
             byte[] Image = c.getBlob(c.getColumnIndex(Util.FOOD_IMAGE));
             Bitmap bitmap = BitmapFactory.decodeByteArray(Image, 0, Image.length);
             food.setImage(bitmap);
@@ -173,14 +169,13 @@ public class DBHelper extends SQLiteOpenHelper {
         return foodItemList;
     }
 
-    //get a list of FoodItem specific to the current by using userID
+    //get a list of FoodItem instances specific to the current by using userID
     public List<FoodItem> getAllFoodByUser(int userID) {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
         String selectAllByUserID = "SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.USER_ID + "= ?";
         @SuppressLint("Recycle")
         Cursor c = db.rawQuery(selectAllByUserID, new String[]{String.valueOf(userID)});
-
         foodItemList = new ArrayList<>();
         while (c.moveToNext()) {
             FoodItem food = new FoodItem();

@@ -13,7 +13,6 @@ import androidx.annotation.Nullable;
 
 import com.saihtoo.foodrescueapp.model.CartItem;
 import com.saihtoo.foodrescueapp.util.CartUtil;
-import com.saihtoo.foodrescueapp.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +35,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    //addData
+    //add data to CartTable
     public long insertCartItem(CartItem cart) {
         db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
@@ -51,7 +50,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return newRowID;
     }
 
-    //getAllItem
+    //get all the data from CartTable
     public List<CartItem> getAllCartItems() {
         List<CartItem> cartItemList;
         db = this.getReadableDatabase();
@@ -64,7 +63,6 @@ public class CartDBHelper extends SQLiteOpenHelper {
             CartItem cart = new CartItem();
             cart.setCartID(c.getInt(c.getColumnIndex(CartUtil.CART_ITEM_ID)));
             cart.setFoodID(c.getInt(c.getColumnIndex(CartUtil.CART_FOOD_ID)));
-
             cart.setTitle(c.getString(c.getColumnIndex(CartUtil.CART_ITEM_TITLE)));
             cart.setDescription(c.getString(c.getColumnIndex(CartUtil.CART_ITEM_DESCRIPTION)));
             cart.setDate(c.getString(c.getColumnIndex(CartUtil.CART_ITEM_DATE)));
@@ -79,7 +77,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
         return cartItemList;
     }
 
-    //deleteTable
+    //delete all rows in CartTable
     public void eraseTable() {
         db = this.getWritableDatabase();
         db.delete(CartUtil.CART_TABLE_NAME, null, null);
@@ -99,7 +97,7 @@ public class CartDBHelper extends SQLiteOpenHelper {
         }
     }
 
-    //Delete a row by FoodID from Cart Table
+    //Delete a row based on foodID in CartTable
     public void deleteFoodByID(int foodID) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(CartUtil.CART_TABLE_NAME, CartUtil.CART_FOOD_ID + "=?", new String[]{String.valueOf(foodID)});

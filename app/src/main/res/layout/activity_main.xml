@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/e">
 
     <LinearLayout
         android:id="@+id/mainLinearLayout"
@@ -18,11 +19,19 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="center">
 
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="20dp"
+            app:srcCompat="@drawable/food_icon"></ImageView>
+
         <EditText
             android:id="@+id/mainUsernameEditText"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:hint="Username">
+            android:hint="Username"
+            android:layout_margin="5dp"
+            android:typeface="monospace">
         </EditText>
 
         <EditText
@@ -30,7 +39,9 @@
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:hint="Password"
-            android:inputType="textPassword">
+            android:layout_margin="5dp"
+            android:inputType="textPassword"
+            android:typeface="monospace">
         </EditText>
 
         <Space
@@ -42,14 +53,18 @@
             android:id="@+id/mainLoginBtn"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="Login">
+            android:layout_margin="10dp"
+            android:text="Login"
+            android:typeface="monospace">
         </Button>
 
         <Button
             android:id="@+id/mainSignupBtn"
             android:layout_width="200dp"
             android:layout_height="50dp"
-            android:text="Sign up">
+            android:text="Sign up"
+            android:typeface="monospace"
+            android:layout_margin="10dp">
         </Button>
 
     </LinearLayout>

@@ -120,6 +120,7 @@ public class FoodActivity extends AppCompatActivity {
                 case RESULT_OK:
                     Toast.makeText(FoodActivity.this, "Payment successful.", Toast.LENGTH_SHORT).show();
 
+                    //Delete purchased items from the Database tables
                     cartDb.deleteFoodByID(currentFoodID);
                     db.deleteFoodByID(String.valueOf(currentFoodID));
 

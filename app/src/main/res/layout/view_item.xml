@@ -7,16 +7,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_gravity="top"
     android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingTop="5dp"
+    android:background="@color/e">
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="10dp"
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        app:srcCompat="@drawable/ic_launcher_background">
+        android:layout_marginStart="10dp"
+        app:srcCompat="@drawable/food_icon">
     </ImageView>
 
     <TextView
@@ -27,16 +28,21 @@
         android:layout_toEndOf="@+id/imageView"
         android:text="Item Title"
         android:textSize="20dp"
-        tools:ignore="HardcodedText">
+        tools:ignore="HardcodedText"
+        android:typeface="monospace"
+        android:textColor="@color/black">
     </TextView>
 
     <ImageButton
         android:id="@+id/itemShareButton"
+        style="@android:style/Widget.ImageButton"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="20dp"
         android:layout_toEndOf="@+id/itemNameText"
-        android:src="?attr/actionModeShareDrawable">
+        android:scaleType="fitCenter"
+        android:background="@color/e"
+        android:src="@drawable/share_icon">
     </ImageButton>
 
 
@@ -47,9 +53,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
         android:layout_toEndOf="@+id/imageView"
-        android:text="Item description ........."
+        android:text="Item description"
         android:textSize="15dp"
-        tools:ignore="HardcodedText">
+        tools:ignore="HardcodedText"
+        android:typeface="monospace"
+        android:textColor="@color/black">
     </TextView>
 
 </RelativeLayout>

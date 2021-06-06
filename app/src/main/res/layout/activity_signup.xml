@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    tools:context=".SignupActivity">
+    tools:context=".SignupActivity"
+    android:background="@color/e">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,15 +21,20 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Full name"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
+
         <EditText
             android:id="@+id/sEmail"
             android:inputType="textEmailAddress"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Email"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
         <EditText
             android:id="@+id/sPhone"
@@ -36,14 +42,18 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Phone number"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
         <EditText
             android:id="@+id/sAddress"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Address"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
         <EditText
             android:id="@+id/sPassword"
@@ -51,22 +61,34 @@
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Password"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
+
         <EditText
             android:id="@+id/sConfirmPassword"
             android:inputType="textPassword"
             android:layout_width="250dp"
             android:layout_height="50dp"
             android:hint="Confirm password"
-            android:layout_margin="10dp">
+            android:layout_margin="10dp"
+            android:textColor="@color/black"
+            android:typeface="monospace">
         </EditText>
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="100dp">
+        </Space>
+
         <Button
             android:id="@+id/sSignUpButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sign in"
-            android:layout_margin="10dp">
+            android:text="Register"
+            android:layout_margin="10dp"
+            android:typeface="monospace">
         </Button>
 
     </LinearLayout>

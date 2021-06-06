@@ -21,8 +21,7 @@ public class FoodItem {
 
     public FoodItem() { }
 
-    public int getFoodID()
-    {
+    public int getFoodID() {
         return foodID;
     }
 

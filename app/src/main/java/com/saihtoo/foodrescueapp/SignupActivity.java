@@ -43,7 +43,6 @@ public class SignupActivity extends AppCompatActivity {
                 String a = address.getText().toString();
                 String pa = password.getText().toString();
                 String cp = confirmPassword.getText().toString();
-
                 if (pa.equals(cp)) {
                     long result = db.insertUser(new UserItem(n, e, p, a, pa));
                     if (result > 0)

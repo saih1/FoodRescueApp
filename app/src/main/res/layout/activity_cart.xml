@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CartActivity">
+    tools:context=".CartActivity"
+    android:background="@color/e">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +15,7 @@
         android:gravity="top">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/e"
             android:id="@+id/myCartRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="490dp"
@@ -30,6 +32,7 @@
             android:layout_gravity="center"
             android:text="TOTAL: $ 00"
             android:textSize="20dp"
+            android:typeface="monospace"
             android:textStyle="bold">
         </TextView>
 
@@ -38,6 +41,7 @@
             android:layout_width="150dp"
             android:layout_height="50dp"
             android:text="Clear cart"
+            android:typeface="monospace"
             android:layout_gravity="center"
             android:layout_margin="20dp">
         </Button>

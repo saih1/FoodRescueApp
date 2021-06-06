@@ -42,8 +42,7 @@ public class CartItem {
         return foodID;
     }
 
-    public void setFoodID(int foodID)
-    {
+    public void setFoodID(int foodID) {
         this.foodID = foodID;
     }
 

@@ -16,7 +16,7 @@ import com.saihtoo.foodrescueapp.model.FoodItem;
 
 import java.util.List;
 
-
+//RecyclerViewAdapter for HomeActivity.class and MyListActivity.class
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.AdapterViewHolder> {
     List<FoodItem> foodItemList;
     Context context;
@@ -47,8 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return this.foodItemList.size();
     }
 
-    public class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener
-    {
+    public static class AdapterViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView itemView;
         public TextView itemTitle, itemDescription;
         public ImageButton shareButton;
@@ -61,13 +60,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             itemDescription = view.findViewById(R.id.itemDescriptionText);
             shareButton = view.findViewById(R.id.itemShareButton);
             onFoodItemClickListener = listener;
-
             view.setOnClickListener(this);
             shareButton.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
+            //check if your clicks on the View or the Share button
             if (v.getId() == R.id.itemShareButton)
                 onFoodItemClickListener.onShareClick(getAdapterPosition());
             else
