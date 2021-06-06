@@ -16,7 +16,7 @@ import com.saihtoo.foodrescueapp.model.UserItem;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     public static final String CURRENT_USER = "current_user";
     private EditText usernameText, passwordText;
-    private Button loginBtn, signupBtn, shareBtn;
+    private Button loginBtn, signupBtn;
 
     DBHelper db;
 

@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.saihtoo.foodrescueapp.model.CartItem;
 import com.saihtoo.foodrescueapp.util.CartUtil;
+import com.saihtoo.foodrescueapp.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,5 +97,12 @@ public class CartDBHelper extends SQLiteOpenHelper {
             db.close();
             return true;
         }
+    }
+
+    //Delete a row by FoodID from Cart Table
+    public void deleteFoodByID(int foodID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(CartUtil.CART_TABLE_NAME, CartUtil.CART_FOOD_ID + "=?", new String[]{String.valueOf(foodID)});
+        db.close();
     }
 }

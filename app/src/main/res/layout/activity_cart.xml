@@ -36,20 +36,44 @@
         <Button
             android:id="@+id/clearCart"
             android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:text="Clear cart"
             android:layout_gravity="center"
             android:layout_margin="20dp">
         </Button>
 
-        <Button
+        <RelativeLayout
             android:id="@+id/googlePayButton"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Pay Now">
-        </Button>
-
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_width="150dp"
+            android:layout_height="50dp"
+            android:background="@drawable/googlepay_button_no_shadow_background"
+            android:padding="2sp"
+            android:contentDescription="@string/buy_with_googlepay_button_content_description">
+            <LinearLayout
+                android:duplicateParentState="true"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="2"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:scaleType="fitCenter"
+                    android:duplicateParentState="true"
+                    android:src="@drawable/buy_with_googlepay_button_content"/>
+            </LinearLayout>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="fitXY"
+                android:duplicateParentState="true"
+                android:src="@drawable/googlepay_button_overlay"/>
+        </RelativeLayout>
 
     </LinearLayout>
 

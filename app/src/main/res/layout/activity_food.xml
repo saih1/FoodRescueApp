@@ -12,57 +12,101 @@
 
     <ImageView
         android:id="@+id/foodItemImageView"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        android:layout_margin="10dp">
+        android:layout_width="230dp"
+        android:layout_height="230dp"
+        app:srcCompat="@mipmap/ic_launcher">
     </ImageView>
 
     <TextView
         android:id="@+id/foodItemDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Food item description"
-        android:layout_margin="10dp">
-    </TextView>
+        android:textSize="20sp"></TextView>
 
     <TextView
         android:id="@+id/foodItemDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Date: 00/00/0000"
-        android:layout_margin="10dp">
-    </TextView>
+        android:textSize="20sp"></TextView>
 
     <TextView
         android:id="@+id/foodItemTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Time: 00:00"
-        android:layout_margin="10dp">
-    </TextView>
+        android:textSize="20sp"></TextView>
 
     <TextView
         android:id="@+id/foodItemQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:text="Quantity: 0"
-        android:layout_margin="10dp">
+        android:textSize="20sp">
     </TextView>
 
     <FrameLayout
         android:id="@+id/mapsFrameLayout"
         android:layout_width="300dp"
-        android:layout_height="170dp"
-        android:layout_margin="10dp">
+        android:layout_height="157dp"
+        android:layout_margin="5dp">
     </FrameLayout>
+
+    <TextView
+        android:id="@+id/foodItemPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Price: $ 00"
+        android:textStyle="bold"
+        android:textSize="20sp">
+    </TextView>
 
     <Button
         android:id="@+id/foodItemAddToCart"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
         android:text="ADD TO CART"
-        android:layout_margin="10dp">
+        android:layout_margin="5dp">
     </Button>
+
+    <RelativeLayout
+        android:id="@+id/foodGooglePayButton"
+        android:layout_gravity="center"
+        android:layout_margin="5dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:background="@drawable/googlepay_button_no_shadow_background"
+        android:padding="2sp"
+        android:contentDescription="@string/buy_with_googlepay_button_content_description">
+        <LinearLayout
+            android:duplicateParentState="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:weightSum="2"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                android:duplicateParentState="true"
+                android:src="@drawable/buy_with_googlepay_button_content"/>
+        </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            android:duplicateParentState="true"
+            android:src="@drawable/googlepay_button_overlay"/>
+    </RelativeLayout>
 
 </LinearLayout>

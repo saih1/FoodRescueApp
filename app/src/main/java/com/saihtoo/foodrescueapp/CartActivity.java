@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,11 +22,13 @@ import com.google.android.gms.wallet.PaymentDataRequest;
 import com.google.android.gms.wallet.PaymentsClient;
 import com.saihtoo.foodrescueapp.adapter.CartViewAdapter;
 import com.saihtoo.foodrescueapp.data.CartDBHelper;
+import com.saihtoo.foodrescueapp.data.DBHelper;
 import com.saihtoo.foodrescueapp.model.CartItem;
 import com.saihtoo.foodrescueapp.util.PaymentsUtil;
 
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -34,14 +37,17 @@ public class CartActivity extends AppCompatActivity {
     CartViewAdapter adapter;
     List<CartItem> cartItemList;
     RecyclerView cartRecyclerView;
+
     CartDBHelper cartDb;
+    DBHelper db;
+
     Button clearCart;
-    Button googlePayButton;
+    RelativeLayout googlePayButton;
 
     TextView cartTotal;
     int currentUserID;
     int totalPrice;
-    int priceOfEachItem = 2;
+    int priceOfEachItem = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,9 +62,9 @@ public class CartActivity extends AppCompatActivity {
 
         currentUserID = getIntent().getIntExtra(MainActivity.CURRENT_USER, 0);
 
+        db = new DBHelper(this);
         cartDb = new CartDBHelper(this);
         cartItemList = cartDb.getAllCartItems();
-
         adapter = new CartViewAdapter(cartItemList, CartActivity.this);
         RecyclerView.LayoutManager manager =
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
@@ -92,6 +98,15 @@ public class CartActivity extends AppCompatActivity {
         });
     }
 
+    //get a list of cartItem foodIDs
+    public List<Integer> getFoodIDList() {
+        List<Integer> idList = new ArrayList<>();
+        for (int i = 0; i < cartItemList.size(); i++) {
+            idList.add(cartItemList.get(i).getFoodID());
+        }
+        return idList;
+    }
+
     //RequestPayment
     protected void requestPayment() {
         PaymentsClient paymentsClient = PaymentsUtil.createPaymentsClient(CartActivity.this);
@@ -107,7 +122,8 @@ public class CartActivity extends AppCompatActivity {
         if (requestCode == PaymentsUtil.REQUEST_PAYMENT) {
             switch (resultCode) {
                 case RESULT_OK:
-                    Toast.makeText(CartActivity.this, "Payment Successful.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartActivity.this, "Payment successful.", Toast.LENGTH_SHORT).show();
+                    db.deleteFoodsByIDs(getFoodIDList());
                     cartDb.eraseTable();
                     Intent intent = new Intent(CartActivity.this, HomeActivity.class);
                     intent.putExtra(MainActivity.CURRENT_USER, currentUserID);
@@ -115,7 +131,7 @@ public class CartActivity extends AppCompatActivity {
                     break;
 
                 case RESULT_CANCELED:
-                    Toast.makeText(CartActivity.this, "Payment cancelled.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CartActivity.this, "Payment cancelled by user.", Toast.LENGTH_SHORT).show();
                     break;
 
                 case AutoResolveHelper.RESULT_ERROR:

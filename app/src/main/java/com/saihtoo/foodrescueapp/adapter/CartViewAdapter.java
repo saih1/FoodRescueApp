@@ -1,5 +1,6 @@
 package com.saihtoo.foodrescueapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +22,7 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.ViewHo
 {
     List<CartItem> cartItemList;
     Context context;
+    final int priceOfEachItem = 3;
 
     public CartViewAdapter(List<CartItem> cartItemList, Context context) {
         this.cartItemList = cartItemList;
@@ -28,19 +30,20 @@ public class CartViewAdapter extends RecyclerView.Adapter<CartViewAdapter.ViewHo
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public @NotNull ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.view_cart_item, parent, false);
         return new ViewHolder(view);
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
-    public void onBindViewHolder(@NonNull @NotNull CartViewAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull CartViewAdapter.ViewHolder holder, int position) {
         holder.imageView.setImageBitmap(this.cartItemList.get(position).getImage());
         holder.titleText.setText(this.cartItemList.get(position).getTitle());
         holder.descriptionText.setText(this.cartItemList.get(position).getDescription());
         holder.dateText.setText(this.cartItemList.get(position).getDate());
         holder.quantityText.setText(this.cartItemList.get(position).getQuantity());
-        holder.priceText.setText("$ 2");
+        holder.priceText.setText("$ " + priceOfEachItem);
     }
 
     @Override

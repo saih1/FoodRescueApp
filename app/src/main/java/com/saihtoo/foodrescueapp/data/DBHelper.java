@@ -19,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
-
     SQLiteDatabase db;
 
     public DBHelper(@Nullable Context context) {
@@ -108,10 +107,10 @@ public class DBHelper extends SQLiteOpenHelper {
     //Get foodItem by using the ID of the food and return FoodItem
     public FoodItem getFoodByID(int foodID) {
         db = this.getReadableDatabase();
-//        byte[] image = new byte[0];
         Bitmap bitmap = null;
         String title = null, description = null, date = null, time = null, quantity = null, location = null;
 
+        @SuppressLint("Recycle")
         Cursor c = db.rawQuery("SELECT * FROM " + Util.FOOD_TABLE_NAME + " WHERE " + Util.FOOD_ID + "=? ",
                 new String[]{String.valueOf(foodID)});
         while (c.moveToNext()) {
@@ -129,6 +128,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return new FoodItem(bitmap, title, description, date, time, quantity, location);
     }
 
+    //get user_ID by email address and password (login details)
     public int getUserID(String username, String password) {
         db = this.getReadableDatabase();
         @SuppressLint("Recycle")
@@ -145,6 +145,7 @@ public class DBHelper extends SQLiteOpenHelper {
         }
     }
 
+    //get all the food items available in the table
     public List<FoodItem> getAllFood() {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
@@ -172,6 +173,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return foodItemList;
     }
 
+    //get a list of FoodItem specific to the current by using userID
     public List<FoodItem> getAllFoodByUser(int userID) {
         List<FoodItem> foodItemList;
         db = this.getReadableDatabase();
@@ -192,5 +194,21 @@ public class DBHelper extends SQLiteOpenHelper {
         }
         db.close();
         return foodItemList;
+    }
+
+    //Delete a row by FoodID from Food Table
+    public void deleteFoodByID(String foodID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(Util.FOOD_TABLE_NAME, Util.FOOD_ID + "=?", new String[]{String.valueOf(foodID)});
+        db.close();
+    }
+
+    //Delete rows by a list of FoodIDs from Food Table
+    public void deleteFoodsByIDs(List<Integer> foodIDList) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        for (int i = 0; i < foodIDList.size(); i++) {
+            db.delete(Util.FOOD_TABLE_NAME, Util.FOOD_ID + "=?", new String[]{String.valueOf(foodIDList.get(i))});
+        }
+        db.close();
     }
 }
