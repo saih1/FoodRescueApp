@@ -10,3 +10,7 @@ Packages and APIs used in this app
 - Google Maps API
 - Google Pay API
 
+### [Demo video](https://www.dropbox.com/s/nm05yf5kyk4f6fc/FoodRescueAPP_2.mp4?dl=0)
+
+### Screenshots
+![foodrescueapp_ss](https://user-images.githubusercontent.com/72930376/126063073-007298a1-2b77-4553-b26e-217110f894ba.png)
